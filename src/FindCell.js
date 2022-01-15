@@ -4,9 +4,10 @@ class FindCell{
     }
 
     clickEvent = (event) => {
+        event.stopPropagation();
         if(event.target.className.split("__")[0] == 'cell'){
             let num = document.querySelector(".click__counter").innerHTML;
-            document.querySelector(".click__counter").innerHTML = +num + 1;
+            document.querySelector(".click__counter").innerHTML = `${+num + 1}`;
             let cellNum = event.target.className.split("__")[1];
             this.findCellX(cellNum);
             this.findCellY(cellNum);
