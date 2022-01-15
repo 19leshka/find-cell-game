@@ -9,6 +9,18 @@ a{
     display: inline-block;
 }
 
+.version{
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    margin: 0;
+    opacity: 0.4;
+}
+
+.version p{
+    margin: 0;
+}
+
 .start__btn{
     margin: 300px auto;
     /* margin-top: 300px; */
