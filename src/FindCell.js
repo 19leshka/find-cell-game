@@ -7,6 +7,7 @@ class FindCell{
         event.stopPropagation();
         if(event.target.className.split("__")[0] == 'cell'){
             let num = document.querySelector(".click__counter").innerHTML;
+            console.table(num, event.target.className)
             document.querySelector(".click__counter").innerHTML = `${+num + 1}`;
             let cellNum = event.target.className.split("__")[1];
             this.findCellX(cellNum);
@@ -91,7 +92,12 @@ class FindCell{
         closeBtn.classList.add("close__btn");
         closeBtn.innerHTML = '<div class="close__game-btn">CLOSE GAME</div>';
         document.querySelector(".table").after(closeBtn);
-        document.querySelector(".close__game-btn").addEventListener("click", this.closeGame);
+        document.querySelector(".close__game-btn").addEventListener("click", this.closeGameBtn);
+    }
+
+    closeGameBtn = () => {
+        this.removeCellEvent();
+        this.closeGame();
     }
 
     closeGame() {
@@ -102,7 +108,7 @@ class FindCell{
     }
 
     winGame() {
-        document.removeEventListener("click", this.clickEvent);
+        this.removeCellEvent();
         setTimeout(() => {
             alert("You win!!!");
             this.closeGame();
@@ -119,6 +125,11 @@ class FindCell{
     
     createCellEvent() {
         document.addEventListener("click", this.clickEvent);
+    }
+
+    removeCellEvent() {
+        console.log("remove")
+        document.removeEventListener("click", this.clickEvent);
     }
 
     clearBgColor(elem) {
