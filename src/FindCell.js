@@ -3,6 +3,22 @@ class FindCell{
         this._a = +a;
     }
 
+    clickEvent = (event) => {
+        if(event.target.className.split("__")[0] == 'cell'){
+            let cellNum = event.target.className.split("__")[1];
+            this.findCellX(cellNum);
+            this.findCellY(cellNum);
+            if(this.getX() == this.getHiddenCellX() && this.getY() == this.getHiddenCellY()){
+                event.target.style.backgroundColor = "green";
+                this.winGame();
+            }
+            else{
+                event.target.style.backgroundColor = "red";
+                this.clearBgColor(event.target);
+            }
+        }
+    } 
+
     getA() {
         return +this._a;
     }
@@ -75,7 +91,7 @@ class FindCell{
     }
 
     winGame() {
-        // this.removeCellEvent();
+        document.removeEventListener("click", this.clickEvent);
         setTimeout(() => {
             alert("You win!!!");
             this.closeGame();
@@ -89,26 +105,11 @@ class FindCell{
             cellNum++;
         })
     }
-
-    createCellEvent() {
-        let table = document.querySelectorAll("td");
-        table.forEach( (elem) => {
-            elem.addEventListener("click", () => {
-                let cellNum = elem.className.split("__")[1];
-                this.findCellX(cellNum);
-                this.findCellY(cellNum);
-                if(this.getX() == this.getHiddenCellX() && this.getY() == this.getHiddenCellY()){
-                    elem.style.backgroundColor = "green";
-                    this.winGame(elem);
-                }
-                else{
-                    elem.style.backgroundColor = "red";
-                    this.clearBgColor(elem);
-                }
-            });
-        })
-    }
     
+    createCellEvent() {
+        document.addEventListener("click", this.clickEvent);
+    }
+
     clearBgColor(elem) {
         let element = elem;
         setTimeout(() => {
@@ -148,6 +149,6 @@ class FindCell{
         let randCellX = this.findCellX(randCellNum);
         let randCellY = this.findCellY(randCellNum);
         this.setHiddenCellXY(randCellX, randCellY);
-        console.table(randCellX, randCellY);
+        console.table("x: " + randCellX,"y: " + randCellY);
     }
 }
