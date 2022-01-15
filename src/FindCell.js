@@ -5,6 +5,8 @@ class FindCell{
 
     clickEvent = (event) => {
         if(event.target.className.split("__")[0] == 'cell'){
+            let num = document.querySelector(".click__counter").innerHTML;
+            document.querySelector(".click__counter").innerHTML = +num + 1;
             let cellNum = event.target.className.split("__")[1];
             this.findCellX(cellNum);
             this.findCellY(cellNum);
@@ -73,7 +75,14 @@ class FindCell{
         table.classList.add("table");
         table.innerHTML = (`<tr>${td.repeat(this.getA())}</tr>`).repeat(this.getA());
         document.querySelector(".table__container").appendChild(table);
-
+        
+    }
+    
+    createCounter() {
+        let counter = document.createElement("div");
+        counter.classList.add("click__counter");
+        counter.innerHTML = "0";
+        document.querySelector(".table__container").appendChild(counter);
     }
 
     createCloseBtn() {
@@ -86,6 +95,7 @@ class FindCell{
 
     closeGame() {
         document.querySelector(".close__btn").remove();
+        document.querySelector(".click__counter").remove();
         document.querySelector(".table").remove();
         document.querySelector('.start__btn').hidden = false;
     }

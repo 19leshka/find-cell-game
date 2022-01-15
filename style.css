@@ -22,6 +22,7 @@ a{
     font-size: 24px;
     text-align: center;
     border: 1px solid #ffb700;
+    box-shadow:2px 2px 4px 0px rgba(34, 60, 80, 0.2);
     border-radius: 5px;
     width: 250px;
     height: 75px;
@@ -51,6 +52,7 @@ a{
     font-size: 24px;
     text-align: center;
     border: 1px solid #ffb700;
+    box-shadow:2px 2px 4px 0px rgba(34, 60, 80, 0.2);
     border-radius: 5px;
     width: 250px;
     height: 75px;
@@ -79,4 +81,17 @@ td{
 
 .table td:hover{
     background-color: #ccc;
+}
+
+.click__counter{ 
+    margin: 100px auto 50px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    background-color: #eee;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 50px;
+    box-shadow:2px 2px 4px 0px rgba(34, 60, 80, 0.2);
 }
