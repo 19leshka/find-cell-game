@@ -1,5 +1,5 @@
 class Game{
-    startGame() {
+    startFSGame() {
         document.querySelector('.start__btn').hidden = true;
         let cellGame = new FindCell(4);
         cellGame.createCounter();
@@ -10,5 +10,7 @@ class Game{
         cellGame.chooseRandomCell();
     }
     
-    
+    startTicTacToe() {
+        document.querySelector('.start__btn').hidden = true;
+    }
 }

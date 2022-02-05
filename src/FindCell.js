@@ -1,5 +1,6 @@
-class FindCell{    
+class FindCell extends GameWindow{    
     constructor(a){
+        super();
         this._a = +a;
     }
 
@@ -7,7 +8,6 @@ class FindCell{
         event.stopPropagation();
         if(event.target.className.split("__")[0] == 'cell'){
             let num = document.querySelector(".click__counter").innerHTML;
-            console.table(num, event.target.className)
             document.querySelector(".click__counter").innerHTML = `${+num + 1}`;
             let cellNum = event.target.className.split("__")[1];
             this.findCellX(cellNum);
@@ -87,14 +87,6 @@ class FindCell{
         document.querySelector(".table__container").appendChild(counter);
     }
 
-    createCloseBtn() {
-        let closeBtn = document.createElement("div");
-        closeBtn.classList.add("close__btn");
-        closeBtn.innerHTML = '<div class="close__game-btn">CLOSE GAME</div>';
-        document.querySelector(".table").after(closeBtn);
-        document.querySelector(".close__game-btn").addEventListener("click", this.closeGameBtn);
-    }
-
     closeGameBtn = () => {
         this.removeCellEvent();
         this.closeGame();
@@ -108,11 +100,23 @@ class FindCell{
     }
 
     winGame() {
+        let moves = +document.querySelector(".click__counter").innerHTML;
         this.removeCellEvent();
+        const winModal = $.modal({
+            title: 'You win!',
+            closable: true,
+            width: `${window.outerWidth/2}px`,
+            content: `You found the cell in ${moves} moves.`,
+            footerButtons: [
+              {text: 'Close', type: 'primary', handler() {
+                winModal.close();
+              }}
+            ]
+        });
         setTimeout(() => {
-            alert("You win!!!");
+            winModal.open();
             this.closeGame();
-        }, 1000);
+        }, 500);
     }
 
     createCellNum() {
@@ -128,7 +132,6 @@ class FindCell{
     }
 
     removeCellEvent() {
-        console.log("remove")
         document.removeEventListener("click", this.clickEvent);
     }
 
@@ -171,6 +174,6 @@ class FindCell{
         let randCellX = this.findCellX(randCellNum);
         let randCellY = this.findCellY(randCellNum);
         this.setHiddenCellXY(randCellX, randCellY);
-        console.table("x: " + randCellX,"y: " + randCellY);
+        // console.table("x: " + randCellX,"y: " + randCellY);
     }
 }
