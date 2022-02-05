@@ -1,0 +1,2 @@
+const $ = {};  // Global Object
+window.$ = $;
