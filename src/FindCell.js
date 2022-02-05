@@ -105,10 +105,17 @@ class FindCell extends GameWindow{
         const winModal = $.modal({
             title: 'You win!',
             closable: true,
+<<<<<<< HEAD
             width: `${window.outerWidth/2}px`,
             content: `You found the cell in ${moves} moves.`,
             footerButtons: [
               {text: 'Close', type: 'primary', handler() {
+=======
+            width: '500px',
+            content: `You found the cage in ${moves} moves`,
+            footerButtons: [
+              {text: 'Закрыть', type: 'primary', handler() {
+>>>>>>> 7b35597a83cf57dd83b43ea93675e87f4d9aff34
                 winModal.close();
               }}
             ]

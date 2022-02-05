@@ -49,7 +49,11 @@
 }
 
 .modal--window {
+<<<<<<< HEAD
   width: 500px;
+=======
+  width: 600px;
+>>>>>>> 7b35597a83cf57dd83b43ea93675e87f4d9aff34
   border-radius: 5px;
   background: #fff;
   margin: 0 auto;
